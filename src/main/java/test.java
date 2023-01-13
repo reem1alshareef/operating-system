@@ -11,29 +11,33 @@
 import java.util.*;
 
 public class test {
-    public static process PCB[]=null; 
+    public static process readyQ[]=new process[30];
+    public static process PCB[]=new process[100];
+    public static int PCBcounter=0;
+    public static int readyCounter=0;
+    public static int P=0;
+
+    
     public static void main(String []args){
     Scanner read = new Scanner(System.in);
     
-    int n=0;
-    int P=0;
     int ch=-1;
-    
     process p=null;
     
     do{
+        
         System.out.println("choose one of the following options by entering its number");
-    System.out.println("1.to enter the number of processes to add the to the system");
-    System.out.println("2.to display detailed information about each process in the system");
-    System.out.println("3.to exit");
-    ch=read.nextInt();
+        System.out.println("1.to create new processes ");
+        System.out.println("2.to display detailed information about each process in the system");
+        System.out.println("3.to exit");
+        
+        ch=read.nextInt();
     if(ch<1||ch>3)
       System.out.println("invaild option");
     
     if (ch==1){
         System.out.println("enter the number of process you want to create");
         P=read.nextInt();
-        PCB= new process[P];//create new arr to add process to it
         
         for(int i=0;i<P;i++){
         System.out.println("enter process priority priority range from 1 to 5 ");
@@ -43,14 +47,16 @@ public class test {
         System.out.println("enter CPU burst time");
             int cpu=read.nextInt();
         p = new process(prior,arrival,cpu);
-        PCB[n++]=p;
+        readyQ[readyCounter++]=p;
         }
        margeSort(0,P-1);
+       appedToPCB();
     }
     if(ch==2){
         for(int i=0;i<P;i++){
-        System.out.println(PCB[i].toString());
+        System.out.println(readyQ[i].toString());
         }
+     printPCB();
     }
     
     }while(ch!=3);
@@ -69,27 +75,71 @@ public class test {
     process B []= new process[r-l+1];
    int i=l,j=m+1,k=0;
      while(i<=m && j<=r){
-     if(PCB[i].getPriority()<=PCB[j].getPriority()){
-     B[k++]=PCB[i];
+     if(readyQ[i].getPriority()<=readyQ[j].getPriority()){
+     B[k++]=readyQ[i];
      i++;
      }
      else{
-     B[k++]=PCB[j];
+     B[k++]=readyQ[j];
      j++;        
      }
      }
      if(i>m)
         while(j<=r){
-     B[k++]=PCB[j];
+     B[k++]=readyQ[j];
      j++;
      }
      else   
         while(i<=m){
-     B[k++]=PCB[i];
+     B[k++]=readyQ[i];
      i++;     
     }
      for(k=0;k<B.length;k++)
-     PCB[k+l]=B[k];
+     readyQ[k+l]=B[k];
     }
     
+    public static void appedToPCB(){ 
+        int totalBurests=totalCpuB();
+        int n=0;//counter for readyQ 
+        int i=0;
+         while(true){
+         if(n<P && readyQ[n].getCpu_b()>0){
+            int Cpu_b=readyQ[n].getCpu_b(); //get the remaing cpu burest for the process
+            readyQ[n].setCpu_b(Cpu_b-1); //update the remaing time by subtracting one (cpu_burest -1)
+            PCB[PCBcounter++]=readyQ[n++];
+            i++;   
+         }
+          if (n==P){
+         n=0;//the counter will be reset to zero if its value equlas to the length of readyQ
+         }
+         
+         if(readyQ[n].getCpu_b()==0){
+         n++;
+         }
+         
+         if(i==totalBurests){
+         break;
+         }
+            
+     }
+         readyCounter=0;
+    }
+    
+    private static int totalCpuB(){//to calcualte the sum of cpu burests
+        int sum=0;
+    for(int i=0;i<P;i++){
+        sum+=readyQ[i].getCpu_b();
+    }
+     return sum;
+    }
+    
+    public static void printPCB(){
+        int i=0;
+    while(PCB[i]!=null){
+    System.out.print("P"+PCB[i].getPid()+"|CS|");
+    i++;
+    }
+    System.out.print("\n");
+    }
+ 
 }
