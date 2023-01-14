@@ -155,7 +155,7 @@ public class test {
     
     public static void writeInFile(){
         try {
-            File f = new File("report1.dat");
+            File f = new File("report1.txt");
             FileOutputStream f2 = new FileOutputStream(f,true);
             PrintWriter pr= new PrintWriter(f2);
             
@@ -172,7 +172,7 @@ public class test {
    public static void readFromFile(){
       try{
         
-        File f = new File("report1.dat");
+        File f = new File("report1.txt");
         Scanner sc = new Scanner(f);
            
                 while(sc.hasNext()){
