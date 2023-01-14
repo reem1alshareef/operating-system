@@ -7,8 +7,10 @@
  *
  * @author artis
  */
-
+import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test {
     public static process readyQ[]=new process[30];
@@ -53,13 +55,12 @@ public class test {
         p = new process(prior,arrival,cpu);
         readyQ[readyCounter++]=p;
         }
+       writeInFile();
        margeSort(0,P-1);
        appedToPCB();
     }
     if(ch==2){
-        for(int i=0;i<P;i++){
-        System.out.println(readyQ[i].toString());
-        }
+     readFromFile();
      printPCB();
     }
     
@@ -79,9 +80,19 @@ public class test {
     process B []= new process[r-l+1];
    int i=l,j=m+1,k=0;
      while(i<=m && j<=r){
-     if(readyQ[i].getPriority()<=readyQ[j].getPriority()){
+     if(readyQ[i].getPriority()<readyQ[j].getPriority()){
      B[k++]=readyQ[i];
      i++;
+     }
+     else if(readyQ[i].getPriority()==readyQ[j].getPriority()){
+       if(readyQ[i].getArrival_time()<readyQ[j].getArrival_time()){
+            B[k++]=readyQ[i];
+            i++;
+          }
+        else{
+            B[k++]=readyQ[j];
+            j++;        
+     }
      }
      else{
      B[k++]=readyQ[j];
@@ -114,7 +125,7 @@ public class test {
             i++;   
          }
           if (n==P){
-         n=0;//the counter will be reset to zero if its value equlas to the length of readyQ
+         n=0;//the counter will be reset to zero if its value equlas to the counter of readyQ
          }
          
          if(readyQ[n].getCpu_b()==0){
@@ -145,5 +156,39 @@ public class test {
     }
     System.out.print("\n");
     }
- 
+    
+    public static void writeInFile(){
+        try {
+            File f = new File("report1.dat");
+            FileOutputStream f2 = new FileOutputStream(f,true);
+            PrintWriter pr= new PrintWriter(f2);
+            
+            for(int i=0;i<P;i++){
+               pr.println(readyQ[i].toString());
+                        }
+              pr.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   public static void readFromFile(){
+      try{
+        
+        File f = new File("report1.dat");
+        Scanner sc = new Scanner(f);
+           
+                while(sc.hasNext()){
+                System.out.println(sc.nextLine());
+                }
+             sc.close();
+              }
+   
+      catch(IOException ex){
+      
+      }
+    
+   }
 }
+

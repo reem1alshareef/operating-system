@@ -7,7 +7,9 @@
  *
  * @author artis
  */
-public class process {
+import java.io.Serializable;
+
+public class process implements Serializable{
     public static int counter=1;
     private int pid;
     private int priority;//1-5
@@ -44,5 +46,10 @@ public class process {
     public int getPid() {
         return pid;
     }
+
+    public int getArrival_time() {
+        return arrival_time;
+    }
+    
   
 }
