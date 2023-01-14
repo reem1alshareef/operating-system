@@ -44,8 +44,8 @@ public class test {
         for(int i=0;i<P;i++){
         System.out.println("enter process priority priority range from 1 to 5 ");
             int prior=read.nextInt();
-            while (priorr<1 ||prior>5 ){
-               system.out.print("please enter priority in range from 1 to 5")
+            while (prior <1 ||prior>5 ){
+               System.out.print("please enter priority in range from 1 to 5");
                prior=read.nextInt();
             }
         System.out.println("enter arrival time");
