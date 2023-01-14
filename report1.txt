@@ -1,0 +1,4 @@
+process{pid=1, priority=1, arrival_time=1, CPU_burst_time=3}
+process{pid=2, priority=2, arrival_time=2, CPU_burst_time=4}
+process{pid=1, priority=2, arrival_time=1, CPU_burst_time=3}
+process{pid=2, priority=2, arrival_time=2, CPU_burst_time=2}

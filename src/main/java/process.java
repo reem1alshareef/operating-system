@@ -16,7 +16,12 @@ public class process implements Serializable{
     private int arrival_time;
     private int CPU_burst_time;
     private int cpu_b;//edit may be removed 
-
+    private int start_time;
+    private int terminat_time;
+    private int turn_around_time;
+    private int Waiting_time;
+    private int Response_time;
+    
     public process(int priority, int arrival_time, int CPU_burst_time) {
         this.pid=counter;
         this.priority = priority;

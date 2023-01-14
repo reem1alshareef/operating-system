@@ -37,6 +37,7 @@ public class test {
     if(ch<1||ch>3)
       System.out.println("invaild option");
     
+    // (task)try /catch for wrong input such as letter  ...
     if (ch==1){
         System.out.println("enter the number of process you want to create");
         P=read.nextInt();
@@ -44,6 +45,10 @@ public class test {
         for(int i=0;i<P;i++){
         System.out.println("enter process priority priority range from 1 to 5 ");
             int prior=read.nextInt();
+            while (prior<1 ||prior>5 ){
+                System.out.println("please enter priority in range from 1 to 5");
+                prior=read.nextInt();
+             } 
         System.out.println("enter arrival time");
             int arrival=read.nextInt();
         System.out.println("enter CPU burst time");
@@ -152,7 +157,7 @@ public class test {
     }
     System.out.print("\n");
     }
-    
+    // these are for file manipulation (all done)
     public static void writeInFile(){
         try {
             File f = new File("report1.txt");
@@ -169,6 +174,7 @@ public class test {
             Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     // these are for file manipulation (all done)   
    public static void readFromFile(){
       try{
         
@@ -182,7 +188,7 @@ public class test {
               }
    
       catch(IOException ex){
-      
+
       }
     
    }
