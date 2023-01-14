@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author artis
- */
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -22,7 +14,7 @@ public class test {
     
     public static void main(String []args){
     Scanner read = new Scanner(System.in);
-    
+    print 
     int ch=-1;
     process p=null;
     
@@ -37,7 +29,6 @@ public class test {
     if(ch<1||ch>3)
       System.out.println("invaild option");
     
-    // (task)try /catch for wrong input such as letter  ...
     if (ch==1){
         System.out.println("enter the number of process you want to create");
         P=read.nextInt();
@@ -157,7 +148,7 @@ public class test {
     }
     System.out.print("\n");
     }
-    // these are for file manipulation (all done)
+    
     public static void writeInFile(){
         try {
             File f = new File("report1.txt");
@@ -174,7 +165,6 @@ public class test {
             Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     // these are for file manipulation (all done)   
    public static void readFromFile(){
       try{
         
