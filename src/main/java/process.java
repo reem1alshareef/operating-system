@@ -25,6 +25,7 @@ public class process implements Serializable{
 
     @Override
     public String toString() {
+        
         return "process{" + "pid=" + pid + ", priority=" + priority + ", arrival_time=" + arrival_time + ", CPU_burst_time=" + CPU_burst_time + '}';
     }//(task )add the rest if the varibles and make the format similer to the repot in the pdf 
     //make it as orderd as you can :) not like mine

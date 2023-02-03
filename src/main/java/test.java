@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -28,7 +27,7 @@ public class test {
         
         ch=read.nextInt();
     if(ch<1||ch>3)
-      System.out.println("invaild option");
+    System.out.println("invaild option");
     
     // (task)try /catch for wrong input such as letter  ...
     if (ch==1){
