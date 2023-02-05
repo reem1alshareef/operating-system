@@ -314,7 +314,7 @@ public class test {
     int i=1;
     while(i!=process.counter){
         n=0;
-      while(PCB[n]!=null){
+        while(PCB[n]!=null){
         if(PCB[n].pid==i){
         sum1+=PCB[n].Response_time;
         sum2+=PCB[n].turn_around_time;
@@ -330,11 +330,8 @@ public class test {
     AVGturnAround=sum2/m;
     AVGresponce=sum1/m;
     }
-      
+
 }
-   
 
-
-   
 
 
